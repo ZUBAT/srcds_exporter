@@ -95,11 +95,11 @@ app.get('/metrics', (req, res) => {
         if (game === "csgo" || game === "gmod"){
             getStats(ip, port, password, game, res).then(result => {
                 if (game === "csgo"){
-                    const defaultLabels = { server: ip+':'+port, game: game };
+                    const defaultLabels = { host: ip, server: ip+':'+port, game: game };
                     csgoRegistry.setDefaultLabels(defaultLabels);
                     csgoRequest(result, res);
                 } else if (game === "gmod"){
-                    const defaultLabels = { server: ip+':'+port, game: game };
+                    const defaultLabels = { host: ip, server: ip+':'+port, game: game };
                     gmodRegistry.setDefaultLabels(defaultLabels);
                     gmodRequest(result, res);
                 }
